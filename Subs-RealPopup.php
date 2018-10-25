@@ -17,7 +17,7 @@ if (!defined('SMF'))
 //================================================================================
 function RPU_Load()
 {
-	global $context, $settings, $boardurl, $modSettings, $cookiename;
+	global $context, $settings, $boardurl, $modSettings, $cookiename, $boarddir;
 
 	// Load language file if we are loading the Help stuff:
 	if (isset($_GET['action']) && $_GET['action'] == 'help')
@@ -27,7 +27,7 @@ function RPU_Load()
 	}
 
 	// Don't include anything if the mod is disabled!!!
-	if (empty($modSettings['realpopup_enabled']))
+	if (empty($modSettings['realpopup_enabled']) || !file_exists($boarddir . '/RealPopup/optincontent.txt'))
 		return;
 		
 	// Don't include anything if membergroups are enabled and not in one of the membergroups:
@@ -64,7 +64,7 @@ function RPU_Load()
 		{
 			jQuery(function($){
 				blossomfeaturebox.init({
-					optinfile: "' . $boardurl . '/RealPopup/optincontent.txt",
+					optinfile: "RealPopup/optincontent.txt",
 					fxeffect: "' . $fxeffect . '",
 					displaytype: "' . $display . '",
 					displayfreq: {
