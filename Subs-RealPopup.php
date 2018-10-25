@@ -29,6 +29,10 @@ function RPU_Load()
 	// Don't include anything if the mod is disabled!!!
 	if (empty($modSettings['realpopup_enabled']))
 		return;
+		
+	// Don't include anything if membergroups are enabled and not in one of the membergroups:
+	if (!empty($modSettings['realpopup_hide_from_membergroups']) && allowedTo('realpopup_hide_popup'))
+		return;
 
 	// Let's figure out some parameters before we add everything:
 	$fxeffect = (empty($modSettings['realpopup_fxeffect']) ? 'swing' : $modSettings['realpopup_fxeffect']);
@@ -111,7 +115,7 @@ function RPU_Load()
 }
 
 //================================================================================
-// Admin hook functions to add "Real Popup" to the Modification Settings page:
+// Admin hooks to add mod to the Modification Settings & Permissions pages:
 //================================================================================
 function RPU_Admin(&$areas)
 {
@@ -123,6 +127,12 @@ function RPU_Admin(&$areas)
 function RPU_Hook(&$subactions)
 {
 	$subactions['realpopup'] = 'RPU_Settings';
+}
+
+function RPU_Permissions(&$permissionGroups, &$permissionList, &$leftPermissionGroups, &$hiddenPermissions, &$relabelPermissions)
+{
+	loadLanguage('RealPopup');
+	$permissionList['membergroup']['realpopup_hide_popup'] = array(false, 'general', 'view_basic_info');
 }
 
 //================================================================================
@@ -167,6 +177,9 @@ function RPU_Settings($return_config = false)
 		array('check', 'realpopup_no_escape'),
 		array('check', 'realpopup_black_screen'),
 		'',
+		array('check', 'realpopup_hide_from_membergroups'),
+		array('permissions', 'realpopup_hide_popup'),
+		'',
 		array('callback', 'realpopup_contents'),
 	);
 	if ($return_config)
@@ -179,9 +192,11 @@ function RPU_Settings($return_config = false)
 		checkSession();
 
 		// Write the contents of the "optincontent.txt" file:
-		$handle = @fopen($boarddir . '/RealPopup/optincontent.txt', 'w');
-		@fwrite($handle, $_POST['realpopup_contents']);
-		fclose($handle);
+		if ($handle = @fopen($boarddir . '/RealPopup/optincontent.txt', 'w'))
+		{
+			@fwrite($handle, $_POST['realpopup_contents']);
+			@fclose($handle);
+		}
 		unset($_POST['realpopup_contents']);
 	
 		// Make sure certain values are set:
@@ -193,9 +208,12 @@ function RPU_Settings($return_config = false)
 
 		// Save the settings, then return to config screen:
 		saveDBSettings($config_vars);
-		redirectexit('action=admin;area=modsettings;sa=realpopup');
+		redirectexit('action=admin;area=modsettings;sa=realpopup' . (empty($handle) ? ';unsaved' : ''));
 	}
+	if (isset($_GET['unsaved']))
+		$context['settings_message'] = $txt['realpopup_unsaved_html'];
 	$modSettings['realpopup_contents'] = @file_get_contents($boarddir . '/RealPopup/optincontent.txt');
+	$modSettings['realpopup_contents'] = htmlspecialchars($modSettings['realpopup_contents']);
 	prepareDBSettingContext($config_vars);
 	$context['post_url'] = $scripturl . '?action=admin;area=modsettings;sa=realpopup;save';
 	$context['settings_title'] = $txt['realpopup_title'];

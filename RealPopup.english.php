@@ -9,6 +9,7 @@
 * WITHOUT ANY WARRANTIES; without even any implied warranty of MERCHANTABILITY	  *
 * or FITNESS FOR A PARTICULAR PURPOSE.											  *
 **********************************************************************************/
+global $boarddir;
 
 $txt['realpopup_title'] = 'Real Popups';
 $txt['realpopup_enabled'] = 'Enable Real Popup mod?';
@@ -35,7 +36,11 @@ $txt['realpopup_color'] = 'Text Color of Popup:<div class="smalltext">NOTE: Expr
 $txt['realpopup_background'] = 'Background Color of Popup:<div class="smalltext">NOTE: Expressed as 6-digit hexadecimal.</div>';
 $txt['realpopup_adblock'] = 'Display Popup only on AdBlock detection?';
 $txt['realpopup_contents'] = 'HTML contents of Opt-In file:';
-$txt['realpopup_no_escape'] = 'Can close Popup on AdBlock detection?';
 $txt['realpopup_black_screen'] = 'Use black overlay on AdBlock detection?';
+$txt['realpopup_no_escape'] = 'Can close Popup on AdBlock detection?';
+$txt['realpopup_hide_from_membergroups'] = 'Hide Popup from non-admin membergroups?<div class="smalltext">NOTE: Popup hidden from admin when enabled.</div>';
+$txt['realpopup_hide_popup'] = 'Membergroups to hide Popup from:';
+$txt['permissionname_realpopup_hide_popup'] = 'Keep Popup from being shown';
+$txt['realpopup_unsaved_html'] = '<b>ERROR:</b> The file <b>RealPopup/optincontent.txt</b> could not be written to!!'
 
 ?>

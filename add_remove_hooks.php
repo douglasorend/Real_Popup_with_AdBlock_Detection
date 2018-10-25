@@ -24,6 +24,7 @@ $hook_functions = array(
 	'integrate_admin_areas' => 'RPU_Admin',
 	'integrate_load_theme' => 'RPU_Load',
 	'integrate_modify_modifications' => 'RPU_Hook',
+	'integrate_load_permissions' => 'RPU_Permissions',
 );
 
 // Adding or removing them?
