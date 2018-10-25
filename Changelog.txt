@@ -1,3 +1,7 @@
+v1.0.2 - September 22nd, 2016
+o Changed position of session validation code.
+o Fixed issue where html [b]style[/b] tag was left open, making entire screen blank.
+
 v1.0.1 - March 20th, 2016
 o Fixed admin area hook so that mod shows up under Modification Settings.
 

@@ -91,23 +91,25 @@ function RPU_Load()
 		$style[] = 'background: #' . substr('000000' . $modSettings['realpopup_background'], -6) . ';';
 
 	// Include any inline styling changes to the forum:
+	if (!empty($style) || !empty($modSettings['realpopup_black_screen']))
+		$context['html_headers'] .= '
+	<style>';
 	if (!empty($style))
 		$context['html_headers'] .= '
-	<style>
 		div.blossomfeaturebox div.optincontent2wrapper{
 			' . implode('
 			', $style) . '
-		}';
+		}
+	</style>';
 	
 	// Change the opacity to create a black screen overlay:
 	if (!empty($modSettings['realpopup_black_screen']))
-		$context['html_headers'] .= (empty($style) ? '
-	<style>' : '') . '
+		$context['html_headers'] .= '
 		div.blossomfeaturebox:before{
 			opacity: 1.0;
 		}';
 	if (!empty($style) || !empty($modSettings['realpopup_black_screen']))
-		echo '
+		$context['html_headers'] .= '
 	</style>';
 }
 
@@ -175,6 +177,9 @@ function RPU_Settings($return_config = false)
 	// Saving?
 	if (isset($_GET['save']))
 	{
+		// Make sure this is a valid session!!!
+		checkSession();
+
 		// Write the contents of the "optincontent.txt" file:
 		$handle = @fopen($boarddir . '/RealPopup/optincontent.txt', 'w');
 		@fwrite($handle, $_POST['realpopup_contents']);
@@ -189,7 +194,6 @@ function RPU_Settings($return_config = false)
 		$_POST['realpopup_background'] = (!isset($_POST['realpopup_background']) ? '' : $_POST['realpopup_background']);
 
 		// Save the settings, then return to config screen:
-		checkSession();
 		saveDBSettings($config_vars);
 		redirectexit('action=admin;area=modsettings;sa=realpopup');
 	}
