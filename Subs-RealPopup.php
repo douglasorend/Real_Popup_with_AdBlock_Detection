@@ -36,6 +36,7 @@ function RPU_Load()
 
 	// Let's figure out some parameters before we add everything:
 	$fxeffect = (empty($modSettings['realpopup_fxeffect']) ? 'swing' : $modSettings['realpopup_fxeffect']);
+	$inline = (empty($modSettings['realpopup_inline']) ? false : $modSettings['realpopup_inline']);
 
 	$display = (empty($modSettings['realpopup_display']) ? 'immediate' : $modSettings['realpopup_display']);
 	$value = empty($modSettings['realpopup_display_value']) ? '0' : $modSettings['realpopup_display_value'];
@@ -64,7 +65,7 @@ function RPU_Load()
 		{
 			jQuery(function($){
 				blossomfeaturebox.init({
-					optinfile: "RealPopup/optincontent.txt",
+					optinfile: "' . (!$inline ? 'RealPopup/optincontent.txt' : '#realpop_optincontent') . '",
 					fxeffect: "' . $fxeffect . '",
 					displaytype: "' . $display . '",
 					displayfreq: {
@@ -112,6 +113,13 @@ function RPU_Load()
 	if (!empty($style) || !empty($modSettings['realpopup_black_screen']))
 		$context['html_headers'] .= '
 	</style>';
+	
+	// Are we including the content inline with the page load?
+	if ($inline)
+	{
+		$contents = file_get_contents($boardurl . '/RealPopup/optincontent.txt');
+		$context['insert_after_template'] = '<div id="realpop_optincontent">' . $contents . '</div></body>';
+	}
 }
 
 //================================================================================
@@ -145,6 +153,7 @@ function RPU_Settings($return_config = false)
 	isAllowedTo('admin_forum');
 	$config_vars = array(
 		array('check', 'realpopup_enabled'),
+		array('check', 'realpopup_inline'),
 		array('select', 'realpopup_fxeffect',  array(
 				'swing' => $txt['realpopup_fx_swing'],
 				'slidedown' => $txt['realpopup_fx_slidedown'],

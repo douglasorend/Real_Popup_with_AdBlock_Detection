@@ -1,3 +1,6 @@
+v1.6 - January 10th, 2018
+o Added option to use [b]optincontent.txt[/b] inline with HTML output.
+
 v1.5 - November 19th, 2017
 o Added check to make sure the [b]optincontent.txt[/b] file exists before continuing.
 o Removed the forum path from the Javascript calling the Blossum Opt-in code.

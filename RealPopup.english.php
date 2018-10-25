@@ -13,6 +13,7 @@ global $boarddir;
 
 $txt['realpopup_title'] = 'Real Popups';
 $txt['realpopup_enabled'] = 'Enable Real Popup mod?';
+$txt['realpopup_inline'] = 'Include popup contents in each page load?';
 $txt['realpopup_fxeffect'] = 'Special Effect mode for Popup Box:<div class="smalltext">Default is "Swing".</div>';
 $txt['realpopup_fx_swing'] = 'Swing';
 $txt['realpopup_fx_slidedown'] = 'Slide Down';
