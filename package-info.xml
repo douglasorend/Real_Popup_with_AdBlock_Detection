@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>Dougiefresh:RealPopup</id>
+	<name>Real Popup with AdBlock Detection</name>
+	<type>modification</type>
+	<version>1.0</version>
+
+	<install for="2.0 - 2.0.99, 2.1 Beta 2">
+		<readme parsebbc="true">readme.txt</readme>
+		<code>add_remove_hooks.php</code>
+		<require-file name="Subs-RealPopup.php" destination="$sourcedir" />
+		<require-file name="RealPopup.english.php" destination="$languagedir" />
+		<require-dir name="RealPopup" destination="$boarddir" />
+	</install>
+	<uninstall for="2.0 - 2.0.99, 2.1 Beta 2">
+		<code>add_remove_hooks.php</code>
+		<remove-file name="$sourcedir/Subs-RealPopup.php" />		
+		<remove-file name="$languagedir/RealPopup.english.php" />		
+		<remove-dir name="$boarddir/RealPopup" />
+	</uninstall>
+</package-info>
