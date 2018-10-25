@@ -99,8 +99,7 @@ function RPU_Load()
 		div.blossomfeaturebox div.optincontent2wrapper{
 			' . implode('
 			', $style) . '
-		}
-	</style>';
+		}';
 	
 	// Change the opacity to create a black screen overlay:
 	if (!empty($modSettings['realpopup_black_screen']))
