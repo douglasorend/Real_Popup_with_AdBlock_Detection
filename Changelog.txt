@@ -1,2 +1,5 @@
+v1.0.1 - March 20th, 2016
+o Fixed admin area hook so that mod shows up under Modification Settings.
+
 v1.0 - March 14th, 2016
 o Initial release to the public

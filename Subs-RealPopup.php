@@ -97,23 +97,24 @@ function RPU_Load()
 		div.blossomfeaturebox div.optincontent2wrapper{
 			' . implode('
 			', $style) . '
-		}
-	</style>';
+		}';
 	
 	// Change the opacity to create a black screen overlay:
 	if (!empty($modSettings['realpopup_black_screen']))
-		$context['html_headers'] .= '
-	<style>
+		$context['html_headers'] .= (empty($style) ? '
+	<style>' : '') . '
 		div.blossomfeaturebox:before{
 			opacity: 1.0;
-		}
+		}';
+	if (!empty($style) || !empty($modSettings['realpopup_black_screen']))
+		echo '
 	</style>';
 }
 
 //================================================================================
 // Admin hook functions to add "Real Popup" to the Modification Settings page:
 //================================================================================
-function RPU_Admin($areas)
+function RPU_Admin(&$areas)
 {
 	global $txt;
 	loadLanguage('RealPopup');
@@ -208,6 +209,5 @@ function template_callback_realpopup_contents()
 							<p>', $txt['realpopup_contents'], '</p>
 							<textarea rows="10" name="realpopup_contents" id="realpopup_contents" style="width: 99%; align: center;">', $modSettings['realpopup_contents'], '</textarea>';
 }
-
 
 ?>
