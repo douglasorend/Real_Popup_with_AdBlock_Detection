@@ -1,3 +1,6 @@
+v1.8 - April 3rd, 2018
+o Fixed [b]Subs-RealPopup.php[/b] so that days duration setting works properly.
+
 v1.7 - January 11th, 2018
 o Moved [b]RealPopup[/b] files under the [b]Themes[/b] directory.
 

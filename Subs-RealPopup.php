@@ -44,7 +44,7 @@ function RPU_Load()
 
 	$duration = (empty($modSettings['realpopup_duration']) ? 'session' : $modSettings['realpopup_duration']);
 	$value = empty($modSettings['realpopup_duration_value']) ? '0' : $modSettings['realpopup_duration_value'];
-	$duration = ($duration == 'min' ? $value . 'min' : ($duration == 'hrs' ? $value. 'hrs' : ($duration == 'hrs' ? $value. 'days' : ($duration == 'session' || $duration == 'always' ? $duration : 'session'))));
+	$duration = ($duration == 'min' ? $value . 'min' : ($duration == 'hrs' ? $value. 'hrs' : ($duration == 'days' ? $value. 'days' : ($duration == 'session' || $duration == 'always' ? $duration : 'session'))));
 
 	// Make sure we don't double declare JQuery:
 	if (strpos($context['html_headers'], 'jquery') === false)
