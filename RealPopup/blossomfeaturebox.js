@@ -13,16 +13,17 @@ var blossomfeaturebox = (function($){
 	var defaults = {
 		fxeffect: 'swing',
 		displayfreq: 'session',
-		displaytype: {duration: 'always', cookiename: 'featurebox'}
+		displaytype: {duration: 'always', cookiename: 'featurebox'},
+		escape: true
 	}
 
 	var blossomui = '<div class="blossomfeaturebox">'
-								+ '<div class="blossominner">'
-								+ '<div class="optincontent2wrapper"></div>'
-								+ '<div class="closex" title="Close">Close</div>'
-								+ '<div class="errordiv"><span>:-(</span></div>'
-								+ '</div>' // end blossominner
-								+ '</div>'
+						+ '<div id="blossominner" class="blossominner">'
+							+ '<div class="optincontent2wrapper"></div>'
+							+ '<div id="blossominner_closex" class="closex" title="Close">Close</div>'
+							+ '<div class="errordiv"><span>:-(</span></div>'
+						+ '</div>' // end blossominner
+					+ '</div>'
 
 	function getCookie(Name){ 
 		var re=new RegExp(Name+"=[^;]+", "i"); //construct RE to search for target name/value pair
@@ -49,29 +50,33 @@ var blossomfeaturebox = (function($){
 		$blossomoptinarea: null,
 		setting: null,
 		
-		buildblossomui: function(){
+		buildblossomui: function(escape){
 			this.$blossomui = $(blossomui).appendTo(document.body)
 			this.$blossominner = this.$blossomui.find('div.blossominner')
 			this.$errordiv = this.$blossomui.find('div.errordiv')
 			this.$blossomoptinarea = this.$blossomui.find('div.optincontent2wrapper')
 			var $closebutt = this.$blossomui.find('div.close')
 
-			$(document).on('keyup', function(e){
-				if (blossomfeaturebox.$blossomui.css('display') == 'block'){
-					if (e.keyCode == KEYCODE_ESC)
-						blossomfeaturebox.hidefeaturebox()
-				}
-			})
+			if (escape){
+				$(document).on('keyup', function(e){
+					if (blossomfeaturebox.$blossomui.css('display') == 'block'){
+						if (e.keyCode == KEYCODE_ESC)
+							blossomfeaturebox.hidefeaturebox()
+					}
+				})
 
-			this.$blossomui.on('click', function(){
-				blossomfeaturebox.hidefeaturebox()
-			})
+				this.$blossomui.on('click', function(){
+					blossomfeaturebox.hidefeaturebox()
+				})
 
-			this.$blossomoptinarea.on('click', function(e){
-				e.stopPropagation()
-			})
-
-
+				this.$blossomoptinarea.on('click', function(e){
+					e.stopPropagation()
+				})
+			} else {
+				var parent = document.getElementById('blossominner');
+				var child = document.getElementById("blossominner_closex");
+				parent.removeChild(child);
+			}
 		},
 
 		showfeaturebox: function(manualopen){
@@ -186,7 +191,7 @@ var blossomfeaturebox = (function($){
 			this.setting = s
 			var $blossomui = $('div.blossomfeaturebox')
 			if ($blossomui.length == 0){ // build feature box UI only once
-				blossomfeaturebox.buildblossomui()
+				blossomfeaturebox.buildblossomui(s.escape)
 			}
 			if (s.displayfreq.duration != 'always' && getCookie(s.displayfreq.cookiename)){ //stage 1 check to see if box should not be loaded
 				loadbox=false

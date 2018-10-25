@@ -66,12 +66,10 @@ function RPU_Load()
 					displayfreq: {
 						duration: "' . $duration . '",
 						cookiename: "' . $cookiename . '_featurebox"
-					}
+					}' . (!empty($modSettings['realpopup_adblock']) && !empty($modSettings['realpopup_no_escape']) ? ',
+					escape: false' : '') . '
 				})
-			});' . (!empty($modSettings['realpopup_adblock']) ? '
-			blossomfeaturebox.$blossomui.on("click", function(){
-				blossomfeaturebox.showfeaturebox()
-			})' : '') . '			
+			});
 		}' . (empty($modSettings['realpopup_adblock']) ? '
 		UsePopup();' : '
 		if(typeof blockAdBlock === "undefined") {
@@ -100,7 +98,7 @@ function RPU_Load()
 			' . implode('
 			', $style) . '
 		}';
-	
+
 	// Change the opacity to create a black screen overlay:
 	if (!empty($modSettings['realpopup_black_screen']))
 		$context['html_headers'] .= '
@@ -166,6 +164,7 @@ function RPU_Settings($return_config = false)
 		array('text', 'realpopup_background', 'javascript' => ' onkeyup="this.value=this.value.replace(/[^\d|A-F|a-f]/,\'\')"'),
 		'',
 		array('check', 'realpopup_adblock'),
+		array('check', 'realpopup_no_escape'),
 		array('check', 'realpopup_black_screen'),
 		'',
 		array('callback', 'realpopup_contents'),

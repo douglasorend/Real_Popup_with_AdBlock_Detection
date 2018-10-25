@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]REAL POPUP WITH ADBLOCK DETECTION v1.0.3[/b][/size][/color]
+[center][color=red][size=16pt][b]REAL POPUP WITH ADBLOCK DETECTION v1.1[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4096]Link to Mod[/url]
 [/center]
 [hr]
@@ -20,6 +20,10 @@ o Text Color of Popup (expressed as 6-digit hexadecimal)
 o Background Color of Popup (expressed as 6-digit hexadecimal)
 o Display Popup only on AdBlock detection?
 o Use black overlay on AdBlock detection?
+o Can close Popup on AdBlock detection?
+
+[color=blue][b][size=12pt][u]Discussion Threads[/u][/size][/b][/color]
+o [url=http://www.simplemachines.org/community/index.php?topic=543125.0]Need a REAL popup mod...[/url]
 
 [color=blue][b][size=12pt][u]Javascript Source Files[/u][/size][/b][/color]
 o [url=http://www.dynamicdrive.com/dynamicindex16/featurebox/index.html]Blossom Opt-in feature box script v1.1[/url] on DynamicDrive.com

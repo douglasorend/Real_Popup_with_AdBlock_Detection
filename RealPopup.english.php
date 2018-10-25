@@ -34,7 +34,8 @@ $txt['realpopup_max_width'] = 'Maximum Width of Popup:<div class="smalltext">NOT
 $txt['realpopup_color'] = 'Text Color of Popup:<div class="smalltext">NOTE: Expressed as 6-digit hexadecimal.</div>';
 $txt['realpopup_background'] = 'Background Color of Popup:<div class="smalltext">NOTE: Expressed as 6-digit hexadecimal.</div>';
 $txt['realpopup_adblock'] = 'Display Popup only on AdBlock detection?';
-$txt['realpopup_black_screen'] = 'Use black overlay on AdBlock detection?';
 $txt['realpopup_contents'] = 'HTML contents of Opt-In file:';
+$txt['realpopup_no_escape'] = 'Can close Popup on AdBlock detection?';
+$txt['realpopup_black_screen'] = 'Use black overlay on AdBlock detection?';
 
 ?>

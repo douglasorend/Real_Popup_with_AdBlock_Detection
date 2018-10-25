@@ -1,3 +1,7 @@
+v1.1 - September 25th, 2016
+o Fixed "Use black overlay on AdBlock detection" functionality.
+o Added "Can close Popup on AdBlock detection?" option.
+
 v1.0.2 - September 22nd, 2016
 o Changed position of session validation code.
 o Fixed issue where html [b]style[/b] tag was left open, making entire screen blank.
