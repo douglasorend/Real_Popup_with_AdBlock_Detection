@@ -1,3 +1,6 @@
+v1.3 - October 19th, 2016
+o Modified [b]package-info.xml[/b] to add redirect to mod admin settings upon install.
+
 v1.2 - September 26th, 2016
 o Added option to enable hiding Popup by membergroups.
 o Added option to select membergroups to hide Popup from.
