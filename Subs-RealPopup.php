@@ -194,7 +194,10 @@ function RPU_Settings($return_config = false)
 		// Write the contents of the "optincontent.txt" file:
 		if ($handle = @fopen($boarddir . '/RealPopup/optincontent.txt', 'w'))
 		{
-			@fwrite($handle, $_POST['realpopup_contents']);
+			$message = $_POST['realpopup_contents'];
+			if (($pos = strpos($message, '<body')) !== false)
+				$message = preg_replace('#(.*)(?:<body[^>]*>)(.*)<\/body>(.*)#is', '$2', $message);
+			@fwrite($handle, $message);
 			@fclose($handle);
 		}
 		unset($_POST['realpopup_contents']);

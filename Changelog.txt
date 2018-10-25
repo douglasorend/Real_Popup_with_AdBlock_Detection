@@ -1,3 +1,6 @@
+v1.4 - September 12th, 2017
+o Added code so that contents of [b]body[/b] tags are used instead of whole document.
+
 v1.3 - October 19th, 2016
 o Modified [b]package-info.xml[/b] to add redirect to mod admin settings upon install.
 
