@@ -27,7 +27,7 @@ function RPU_Load()
 	}
 
 	// Don't include anything if the mod is disabled!!!
-	if (empty($modSettings['realpopup_enabled']) || !file_exists($boarddir . '/RealPopup/optincontent.txt'))
+	if (empty($modSettings['realpopup_enabled']) || !file_exists($boarddir . '/Themes/RealPopup/optincontent.txt'))
 		return;
 		
 	// Don't include anything if membergroups are enabled and not in one of the membergroups:
@@ -56,16 +56,16 @@ function RPU_Load()
 	<script><!-- // --><![CDATA[
 		window.jQuery || document.write(\'<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"><\/script>\');
 	// ]]></script>
-	<link rel="stylesheet" type="text/css" href="' . $boardurl . '/RealPopup/blossomfeaturebox.css" />
-	<link rel="stylesheet" type="text/css" href="' . $boardurl . '/RealPopup/optincontent.css" />
-	<script type="text/javascript" src="'. $boardurl . '/RealPopup/blossomfeaturebox.js"></script>' . (!empty($modSettings['realpopup_adblock']) ? '
-	<script type="text/javascript" src="'. $boardurl . '/RealPopup/blockadblock.js"></script>' : '') . '
+	<link rel="stylesheet" type="text/css" href="' . $boardurl . '/Themes/RealPopup/blossomfeaturebox.css" />
+	<link rel="stylesheet" type="text/css" href="' . $boardurl . '/Themes/RealPopup/optincontent.css" />
+	<script type="text/javascript" src="'. $boardurl . '/Themes/RealPopup/blossomfeaturebox.js"></script>' . (!empty($modSettings['realpopup_adblock']) ? '
+	<script type="text/javascript" src="'. $boardurl . '/Themes/RealPopup/blockadblock.js"></script>' : '') . '
 	<script type="text/javascript"><!-- // --><![CDATA[
 		function UsePopup()
 		{
 			jQuery(function($){
 				blossomfeaturebox.init({
-					optinfile: "' . (!$inline ? 'RealPopup/optincontent.txt' : '#realpop_optincontent') . '",
+					optinfile: "' . (!$inline ? $boardurl . '/Themes/RealPopup/optincontent.txt' : '#realpop_optincontent') . '",
 					fxeffect: "' . $fxeffect . '",
 					displaytype: "' . $display . '",
 					displayfreq: {
@@ -117,7 +117,7 @@ function RPU_Load()
 	// Are we including the content inline with the page load?
 	if ($inline)
 	{
-		$contents = file_get_contents($boardurl . '/RealPopup/optincontent.txt');
+		$contents = file_get_contents($boarddir . '/Themes/RealPopup/optincontent.txt');
 		$context['insert_after_template'] = '<div id="realpop_optincontent">' . $contents . '</div></body>';
 	}
 }
@@ -201,7 +201,7 @@ function RPU_Settings($return_config = false)
 		checkSession();
 
 		// Write the contents of the "optincontent.txt" file:
-		if ($handle = @fopen($boarddir . '/RealPopup/optincontent.txt', 'w'))
+		if ($handle = @fopen($boarddir . '/Themes/RealPopup/optincontent.txt', 'w'))
 		{
 			$message = $_POST['realpopup_contents'];
 			if (($pos = strpos($message, '<body')) !== false)
@@ -224,7 +224,7 @@ function RPU_Settings($return_config = false)
 	}
 	if (isset($_GET['unsaved']))
 		$context['settings_message'] = $txt['realpopup_unsaved_html'];
-	$modSettings['realpopup_contents'] = @file_get_contents($boarddir . '/RealPopup/optincontent.txt');
+	$modSettings['realpopup_contents'] = @file_get_contents($boarddir . '/Themes/RealPopup/optincontent.txt');
 	$modSettings['realpopup_contents'] = htmlspecialchars($modSettings['realpopup_contents']);
 	prepareDBSettingContext($config_vars);
 	$context['post_url'] = $scripturl . '?action=admin;area=modsettings;sa=realpopup;save';
